@@ -1,13 +1,15 @@
-FROM alpine:3.21
+FROM eclipse-temurin:17-alpine
 
-ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+ENV CMDLINE_TOOLS_HOME=/opt/cmdline-tools
+
+ENV PATH=$PATH:$CMDLINE_TOOLS_HOME/latest/bin
 
 RUN apk add wget unzip
 
 RUN echo "Downloading commandlinetools" \
     && wget --no-verbose --output-document=commandlinetools.zip "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip" \
     && echo "Installing commandlinetools" \
-    && mkdir "${ANDROID_HOME}" \
-    && unzip commandlinetools.zip -d "${ANDROID_HOME}/cmdline-tools" \
+    && mkdir "${CMDLINE_TOOLS_HOME}" \
+    && unzip commandlinetools.zip -d "${CMDLINE_TOOLS_HOME}" \
     && rm commandlinetools.zip \
-    && mv "${ANDROID_HOME}/cmdline-tools/cmdline-tools" "${ANDROID_HOME}/cmdline-tools/latest/"
+    && mv "${CMDLINE_TOOLS_HOME}/cmdline-tools" "${CMDLINE_TOOLS_HOME}/latest/"
