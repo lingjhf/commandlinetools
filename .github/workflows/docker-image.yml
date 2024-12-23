@@ -32,6 +32,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/lingjhf/commandlinetools:latest
+          tags: ghcr.io/lingjhf/cmdline-tools:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
